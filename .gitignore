@@ -1,10 +1,39 @@
-# Python-generated files
+# --- Python Bytecode & Cache ---
 __pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
+*.py[cod]
+*$py.class
 
-# Virtual environments
-.venv
+# --- Virtual Environments (uv / venv) ---
+.venv/
+venv/
+env/
+
+# --- Environment Variables & Secrets ---
+# (סודות ומפתחות - לעולם לא מעלים ל-Git!)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# --- Testing & Quality Tools Caches ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Local Data & Runtime Storage ---
+# (תוצר אחסון מקומי של ה-JSON/SQLite כדי לא לזהם את המאגר)
+data/
+*.json.lock
+*.db
+*.sqlite3
+
+# --- IDE & Editor Settings ---
+.vscode/
+.idea/
+*.swp
+
+# --- OS Generated Files ---
+.DS_Store
+Thumbs.db
