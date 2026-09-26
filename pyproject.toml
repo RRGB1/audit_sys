@@ -7,7 +7,11 @@ authors = [
     { name = "RRGB1", email = "robirozen@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "fastapi>=0.141.1",
+    "filelock",
+    "uvicorn>=0.54.0",
+]
 
 [project.scripts]
 audit-sys = "audit_sys:main"
@@ -18,10 +22,18 @@ build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
+    "httpx>=0.28.1",
+    "httpx2>=2.13.1",
     "mypy>=2.3.1",
     "pytest>=9.1.1",
     "ruff>=0.16.8",
 ]
 [tool.pytest.ini_options]
-pythonpath = ["."]
+pythonpath = ["src"]
 testpaths = ["tests"]
+[tool.mypy]
+python_version = "3.12"
+mypy_path = "src"
+strict = true
+warn_unused_configs = true
+show_error_codes = true

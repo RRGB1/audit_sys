@@ -1,4 +1,4 @@
-"""Pytest suite for src.models.core.
+"""Pytest suite for audit_sys.models.core.
 
 The tests cover the public core-domain model, its value objects, constructor
 validation, UUID/time generation, lifecycle invariants and closure rules.
@@ -11,7 +11,7 @@ from uuid import UUID, uuid1, uuid4
 
 import pytest
 
-from src.models.core import (
+from audit_sys.models.core import (
     Audit,
     AuditClosureGate,
     AuditCriterionSnapshot,
@@ -609,13 +609,12 @@ def test_validate_rejects_closed_at_before_completed_at() -> None:
 def test_start_normalizes_aware_non_utc_timestamp_to_utc() -> None:
     audit = issued_audit()
     plus_three = timezone(timedelta(hours=3))
-    local_time = datetime(2026, 9, 21, 10, 0, tzinfo=plus_three)
+    expected_utc = audit.created_at + timedelta(hours=1)
+    local_time = expected_utc.astimezone(plus_three)
 
     audit.start(local_time)
 
-    assert audit.started_at == datetime(
-        2026, 9, 21, 7, 0, tzinfo=UTC
-    )
+    assert audit.started_at == expected_utc
     assert audit.started_at.tzinfo == UTC
 
 

@@ -1435,5 +1435,5 @@ class Audit:
 
 
 # Backward-compatible alias for code that still imports CoreModel from
-# src.models.core. New code should use the business/domain name `Audit`.
+# audit_sys.models.core. New code should use the business/domain name `Audit`.
 CoreModel = Audit
