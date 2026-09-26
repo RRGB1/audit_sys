@@ -384,7 +384,7 @@ def test_list_audits_filters_by_status(
 
     assert response.status_code == 200
     body = response.json()
-    assert set(item["id"] for item in body) == set(mixed_audits[status])
+    assert {item["id"] for item in body} == set(mixed_audits[status])
     assert all(item["status"] == status for item in body)
 
 
